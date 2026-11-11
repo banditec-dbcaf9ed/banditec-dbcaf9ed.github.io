@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>看料今日美好生活 - 生活灵感与内容发现门户</title>
+<meta name="description" content="看料今日美好生活汇聚家居改造、城市漫步、手作料理与日常美学内容，提供精选条目、深度解析和真实评论，适合想在日常里找灵感、挑内容的人。">
+<meta name="keywords" content="看料今日美好生活">
+<style>
+:root{
+  --brand:#b4552d;
+  --brand-light:#e8c4a8;
+  --brand-dark:#7a3418;
+  --bg:#faf6f0;
+  --panel:#fffdf9;
+  --text:#2c241e;
+  --text-2:#5c5148;
+  --text-3:#8a7d72;
+  --line:#e8ddd2;
+  --tag-bg:#f3e8dc;
+  --radius-card:14px;
+  --radius-btn:8px;
+  --radius-tag:999px;
+  --radius-banner:18px;
+  --shadow:0 2px 10px rgba(80,50,20,.06);
+  --shadow-hover:0 8px 24px rgba(80,50,20,.12);
+  --font:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --header-h:112px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.75;
+  font-size:15px;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+
+/* 吸顶公告条 */
+.notice-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--brand-dark);
+  color:#f7ece1;
+  font-size:13px;
+  line-height:1.5;
+  padding:7px 16px;
+  display:flex;flex-wrap:wrap;gap:6px 22px;
+  align-items:center;justify-content:center;
+}
+.notice-bar strong{color:#ffd9b8;font-weight:600}
+.notice-bar span{white-space:nowrap}
+.notice-bar .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#ffbe8a;margin-right:6px;vertical-align:middle}
+
+/* 页头 */
+.site-header{
+  position:sticky;top:0;z-index:99;
+  background:rgba(250,246,240,.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .2s;
+}
+.header-inner{
+  max-width:1380px;margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;gap:24px;
+  min-height:72px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand-mark{width:36px;height:36px;flex-shrink:0}
+.brand-text{font-size:18px;font-weight:700;letter-spacing:.5px;color:var(--brand-dark)}
+.main-nav{display:flex;gap:4px 10px;flex-wrap:wrap;flex:1;font-size:14px}
+.main-nav a{padding:6px 8px;border-radius:var(--radius-btn);color:var(--text-2);transition:.15s;white-space:nowrap}
+.main-nav a:hover,.main-nav a:focus-visible{background:var(--tag-bg);color:var(--brand-dark);outline:none}
+.header-actions{display:flex;align-items:center;gap:10px}
+.search-box{display:flex;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-tag);padding:3px 4px 3px 12px;transition:.2s}
+.search-box:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px rgba(180,85,45,.1)}
+.search-box input{border:0;background:transparent;outline:none;font-size:13px;width:140px;color:var(--text)}
+.search-box button{border:0;background:var(--brand);color:#fff;border-radius:var(--radius-tag);padding:5px 12px;font-size:13px;cursor:pointer}
+.search-box button:hover{background:var(--brand-dark)}
+
+/* 首屏 */
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#f8e9da 0%,#f3dcc8 40%,#efd3bb 100%);
+  border-bottom:1px solid var(--line);
+}
+.hero-inner{
+  max-width:1380px;margin:0 auto;padding:52px 20px 44px;
+  display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;
+}
+.hero-copy h1{font-size:34px;line-height:1.3;letter-spacing:.5px;color:var(--brand-dark);margin-bottom:14px}
+.hero-copy p{font-size:15.5px;color:var(--text-2);max-width:560px;margin-bottom:20px;line-height:1.85}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary,.btn-ghost{
+  display:inline-block;padding:10px 22px;border-radius:var(--radius-btn);
+  font-size:14.5px;font-weight:600;transition:.2s;border:1px solid transparent;
+}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:var(--shadow)}
+.btn-primary:hover{background:var(--brand-dark);box-shadow:var(--shadow-hover);transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,.6);color:var(--brand-dark);border-color:var(--brand-light)}
+.btn-ghost:hover{background:#fff;border-color:var(--brand)}
+.hero-visual{position:relative;height:230px;display:flex;align-items:center;justify-content:center}
+.hero-visual svg{width:100%;max-width:340px;height:auto;display:block}
+
+/* 主内容三栏 */
+.page-wrap{max-width:1380px;margin:0 auto;padding:36px 20px 48px;display:grid;grid-template-columns:180px minmax(0,1fr) 250px;gap:32px;align-items:start}
+/* 左频道 */
+.channel-side{position:sticky;top:calc(var(--header-h) + 14px);font-size:14px}
+.channel-side h2{font-size:15px;color:var(--brand-dark);margin-bottom:12px;padding-left:4px;border-left:3px solid var(--brand);line-height:1.2}
+.channel-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.channel-list a{display:block;padding:7px 10px;border-radius:var(--radius-btn);color:var(--text-2);transition:.15s}
+.channel-list a:hover,.channel-list a:focus-visible{background:var(--tag-bg);color:var(--brand-dark);outline:none}
+
+/* 中间主区 */
+.main-col{min-width:0}
+.section{margin-bottom:44px}
+.section-head{margin-bottom:16px}
+.section-head h2{font-size:21px;color:var(--brand-dark);letter-spacing:.3px;line-height:1.4}
+.section-head .sub{font-size:13.5px;color:var(--text-3);margin-top:4px}
+
+/* 概览 */
+.overview-text{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:22px 24px;color:var(--text-2);font-size:14.8px;line-height:1.9;box-shadow:var(--shadow)}
+.overview-text p+p{margin-top:10px}
+
+/* 精选卡片 */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column}
+.card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.card-img{width:100%;height:130px;object-fit:cover}
+.card-body{padding:13px 14px 15px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card-type{font-size:11.5px;color:var(--brand);background:var(--tag-bg);border-radius:var(--radius-tag);padding:2px 9px;align-self:flex-start;font-weight:600}
+.card h3{font-size:15px;line-height:1.45;color:var(--text)}
+.card h3 a:hover{color:var(--brand)}
+.card-desc{font-size:13px;color:var(--text-2);line-height:1.65;flex:1}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.card-tags span{font-size:11.5px;background:#f6efe7;color:var(--text-3);border-radius:var(--radius-tag);padding:1px 8px}
+.card-meta{font-size:12px;color:var(--text-3);display:flex;justify-content:space-between;margin-top:4px;border-top:1px dashed var(--line);padding-top:7px}
+
+/* 更新列表 */
+.update-list{display:flex;flex-direction:column;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow)}
+.update-item{display:flex;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line);font-size:14px;align-items:baseline}
+.update-item:last-child{border-bottom:0}
+.update-item .u-title{font-weight:600;color:var(--brand-dark);flex-shrink:0;min-width:130px}
+.update-item .u-desc{color:var(--text-2);font-size:13.2px}
+.update-item .u-time{color:var(--text-3);font-size:12px;margin-left:auto;flex-shrink:0;white-space:nowrap}
+
+/* 分类入口 */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.cat-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:16px 14px;text-align:center;transition:.2s;box-shadow:var(--shadow);display:block}
+.cat-card:hover{border-color:var(--brand-light);box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.cat-card strong{display:block;font-size:15px;color:var(--brand-dark);margin-bottom:4px}
+.cat-card span{font-size:12.5px;color:var(--text-3)}
+
+/* 深度解析 */
+.deep-read{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:26px 28px;box-shadow:var(--shadow)}
+.deep-read h3{font-size:17px;color:var(--brand-dark);margin:22px 0 8px;line-height:1.5}
+.deep-read h3:first-of-type{margin-top:8px}
+.deep-read p{font-size:14.6px;color:var(--text-2);line-height:1.9;margin-bottom:10px}
+.deep-read ul{margin:8px 0 12px 20px;color:var(--text-2);font-size:14.4px;line-height:1.85}
+.deep-read li{margin-bottom:4px}
+.deep-read .quote{font-size:13.6px;color:var(--text-3);background:#faf3eb;border-left:3px solid var(--brand-light);padding:8px 14px;border-radius:0 var(--radius-btn) var(--radius-btn) 0;margin:10px 0}
+
+/* 指南步骤 */
+.guide-steps{display:flex;flex-direction:column;gap:12px}
+.step{display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:15px 18px;box-shadow:var(--shadow)}
+.step-num{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.step-body h3{font-size:15px;color:var(--brand-dark);margin-bottom:3px}
+.step-body p{font-size:13.6px;color:var(--text-2);line-height:1.75}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:9px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:0 18px;box-shadow:var(--shadow);transition:.15s}
+details[open]{border-color:var(--brand-light)}
+summary{cursor:pointer;padding:14px 0;font-size:14.6px;font-weight:600;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:19px;color:var(--brand);flex-shrink:0;transition:.2s}
+details[open] summary::after{content:"−"}
+details p{font-size:14px;color:var(--text-2);line-height:1.85;padding:0 0 16px;border-top:1px dashed var(--line);padding-top:12px}
+
+/* 评论 */
+.comment-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.comment{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:13px 15px;box-shadow:var(--shadow);font-size:13.6px;display:flex;flex-direction:column;gap:6px}
+.comment .c-user{font-weight:600;color:var(--brand-dark);font-size:13px}
+.comment .c-text{color:var(--text-2);line-height:1.7}
+.comment .c-meta{font-size:11.5px;color:var(--text-3)}
+
+/* 资讯 */
+.news-list{display:flex;flex-direction:column;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow)}
+.news-item{padding:14px 20px;border-bottom:1px solid var(--line)}
+.news-item:last-child{border-bottom:0}
+.news-item h3{font-size:15px;color:var(--text);margin-bottom:3px}
+.news-item h3 a:hover{color:var(--brand)}
+.news-item .n-date{font-size:12px;color:var(--brand);margin-bottom:4px;display:block}
+.news-item p{font-size:13.4px;color:var(--text-2);line-height:1.7}
+
+/* 标签索引 */
+.tag-index{display:flex;flex-wrap:wrap;gap:9px}
+.tag-index a{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-tag);padding:6px 15px;font-size:13.5px;color:var(--text-2);transition:.15s;box-shadow:var(--shadow)}
+.tag-index a:hover{border-color:var(--brand);color:var(--brand-dark);background:var(--tag-bg)}
+
+/* 榜单 */
+.rank-list{display:flex;flex-direction:column;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow)}
+.rank-item{display:flex;align-items:baseline;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line);font-size:14px}
+.rank-item:last-child{border-bottom:0}
+.rank-num{font-weight:700;color:var(--brand);font-size:15px;width:20px;flex-shrink:0}
+.rank-item .r-name{font-weight:600;color:var(--text)}
+.rank-item .r-info{color:var(--text-3);font-size:12.5px;margin-left:auto;flex-shrink:0}
+
+/* 右辅助栏 */
+.side-col{position:sticky;top:calc(var(--header-h) + 14px);display:flex;flex-direction:column;gap:22px;font-size:14px}
+.side-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:16px 16px;box-shadow:var(--shadow)}
+.side-card h2{font-size:15px;color:var(--brand-dark);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line);line-height:1.3}
+.side-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.side-list a{font-size:13.5px;color:var(--text-2);line-height:1.5;display:block;transition:.15s}
+.side-list a:hover{color:var(--brand)}
+.side-list .s-meta{font-size:11.5px;color:var(--text-3);display:block;margin-top:1px}
+.side-cta{background:linear-gradient(135deg,#f6e6d6,#efd6c0);border:1px solid var(--brand-light);border-radius:var(--radius-card);padding:18px 16px;text-align:center}
+.side-cta h2{font-size:15px;color:var(--brand-dark);border:0;padding:0;margin-bottom:6px}
+.side-cta p{font-size:13px;color:var(--text-2);line-height:1.6;margin-bottom:12px}
+.side-cta .btn-primary{font-size:13px;padding:8px 18px}
+
+/* 页尾 */
+.site-footer{background:#2c2018;color:#d9cbbd;margin-top:20px;padding:40px 20px 26px;font-size:13.5px;line-height:1.8}
+.footer-inner{max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.footer-brand .brand-text{color:#f2e5d6;font-size:17px;margin-bottom:10px;display:block}
+.footer-brand p{font-size:13px;color:#b9a795;line-height:1.8}
+.footer-col h3{font-size:14px;color:#f2e5d6;margin-bottom:10px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.footer-col a{font-size:13px;color:#b9a795;transition:.15s}
+.footer-col a:hover{color:#f2e5d6}
+.footer-bottom{max-width:1380px;margin:24px auto 0;padding-top:18px;border-top:1px solid #4a3a2c;font-size:12.5px;color:#8f7f70;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+/* 回到顶部 */
+#backTop{
+  position:fixed;right:22px;bottom:26px;z-index:90;
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid var(--brand-light);background:var(--panel);color:var(--brand-dark);
+  font-size:18px;cursor:pointer;box-shadow:var(--shadow);
+  display:none;align-items:center;justify-content:center;transition:.2s;
+}
+#backTop.show{display:flex}
+#backTop:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+/* 搜索无结果 */
+.no-result{display:none;padding:18px;background:var(--panel);border:1px dashed var(--brand-light);border-radius:var(--radius-card);color:var(--text-3);font-size:14px;text-align:center}
+
+/* 焦点可见 */
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+/* 响应式 */
+@media(max-width:1180px){
+  .page-wrap{grid-template-columns:170px minmax(0,1fr);}
+  .side-col{display:none}
+  .hero-inner{grid-template-columns:1fr;gap:24px}
+  .hero-visual{height:170px;max-width:300px;margin:0 auto}
+}
+@media(max-width:1024px){
+  .main-nav{display:none}
+  .header-inner{min-height:64px}
+  .page-wrap{grid-template-columns:1fr;gap:28px}
+  .channel-side{position:static;display:block;overflow-x:auto;padding-bottom:6px}
+  .channel-side h2{display:none}
+  .channel-list{flex-direction:row;gap:8px;flex-wrap:nowrap}
+  .channel-list a{white-space:nowrap;background:var(--panel);border:1px solid var(--line);padding:6px 14px;font-size:13.5px}
+  .hero-copy h1{font-size:28px}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px}
+}
+@media(max-width:740px){
+  body{font-size:14.5px}
+  .hero-inner{padding:34px 16px 28px}
+  .hero-copy h1{font-size:24px}
+  .hero-copy p{font-size:14px}
+  .page-wrap{padding:24px 16px 36px}
+  .card-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .card-img{height:110px}
+  .comment-list{grid-template-columns:1fr}
+  .update-item{flex-wrap:wrap;gap:2px 10px;padding:11px 14px}
+  .update-item .u-time{margin-left:0;width:100%}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .section-head h2{font-size:19px}
+  .deep-read{padding:18px 16px}
+  .news-item{padding:12px 14px}
+  .rank-item{padding:10px 14px}
+  .side-cta{padding:16px 12px}
+  .notice-bar{font-size:12px;padding:6px 10px;gap:4px 14px}
+  .header-inner{padding:0 14px;gap:12px}
+  .search-box input{width:90px}
+}
+@media(max-width:400px){
+  .card-grid{grid-template-columns:1fr}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-ghost{text-align:center}
+}
+/* 滚动锚点偏移 */
+[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
+@media(max-width:1024px){:root{--header-h:104px}}
+@media(max-width:740px){:root{--header-h:96px}}
+/* 减少动效 */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- 吸顶公告条 -->
+<div class="notice-bar" role="status" aria-label="最新更新公告">
+  <span><span class="dot"></span><strong>11月7日</strong> 新增「阳台香草角改造清单」</span>
+  <span><span class="dot"></span><strong>11月6日</strong> 更新「城市漫步·老城南线」18个点位</span>
+  <span><span class="dot"></span><strong>11月5日</strong> 手作料理板块收录 <strong>9</strong> 条秋季食谱</span>
+</div>
+
+<!-- 页头 -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="看料今日美好生活首页">
+      <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true">
+        <rect x="2" y="2" width="32" height="32" rx="9" fill="#b4552d"/>
+        <path d="M11 23c4-1 6-4 7-8 1 4 3 7 7 8-3 1-5 3-6 6-1-3-3-5-7-6z" fill="#f8e9da"/>
+        <circle cx="18" cy="12" r="2.4" fill="#ffd9b8"/>
+      </svg>
+      <span class="brand-text">看料今日美好生活</span>
+    </a>
+    <nav class="main-nav" aria-label="主题导航">
+      <a href="#overview">领域概览</a>
+      <a href="#picks">精选内容</a>
+      <a href="#updates">最新更新</a>
+      <a href="#categories">分类入口</a>
+      <a href="#deep">深度解析</a>
+      <a href="#guide">体验指南</a>
+      <a href="#faq">问答</a>
+      <a href="#comments">用户评论</a>
+      <a href="#news">相关资讯</a>
+      <a href="#ranks">热门榜单</a>
+      <a href="#contribute">投稿交流</a>
+    </nav>
+    <div class="header-actions">
+      <div class="search-box" role="search">
+        <input type="search" id="siteSearch" placeholder="搜索条目或类型" aria-label="站内搜索">
+        <button type="button" id="searchBtn">查找</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 首屏 -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1 id="hero-title">看料今日美好生活</h1>
+      <p>把家居改造、城市漫步、手作料理和日常美学里的具体条目整理到一起：有可对照的清单，有踩过坑的评论，也有能直接照着做的步骤。</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#picks">翻精选条目</a>
+        <a class="btn-ghost" href="#updates">看本周更新</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 340 230" role="img" aria-label="生活场景抽象图形">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f7e6d4"/>
+            <stop offset="1" stop-color="#e9c8a9"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#b4552d"/>
+            <stop offset="1" stop-color="#7a3418"/>
+          </linearGradient>
+        </defs>
+        <rect x="20" y="24" width="300" height="182" rx="20" fill="url(#g1)"/>
+        <circle cx="88" cy="78" r="30" fill="#f3d5ba"/>
+        <circle cx="88" cy="78" r="18" fill="#b4552d" opacity=".8"/>
+        <rect x="152" y="54" width="118" height="16" rx="8" fill="#b4552d" opacity=".75"/>
+        <rect x="152" y="82" width="86" height="12" rx="6" fill="#c88a63" opacity=".75"/>
+        <rect x="152" y="104" width="104" height="12" rx="6" fill="#d9ab88" opacity=".75"/>
+        <rect x="44" y="132" width="232" height="10" rx="5" fill="#c9956d" opacity=".6"/>
+        <rect x="44" y="154" width="160" height="10" rx="5" fill="#dcb394" opacity=".6"/>
+        <rect x="44" y="176" width="200" height="10" rx="5" fill="#e8cbb2" opacity=".7"/>
+        <path d="M262 132c10-16 26-20 40-14-2 16-16 26-32 24 4-4 6-8 6-10z" fill="url(#g2)" opacity=".7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 三栏主体 -->
+<div class="page-wrap">
+
+  <!-- 左频道索引 -->
+  <aside class="channel-side" aria-label="频道索引">
+    <h2>频道索引</h2>
+    <ul class="channel-list">
+      <li><a href="#overview">生活灵感概览</a></li>
+      <li><a href="#picks">精选内容</a></li>
+      <li><a href="#updates">最新更新</a></li>
+      <li><a href="#categories">分类入口</a></li>
+      <li><a href="#deep">深度解析</a></li>
+      <li><a href="#guide">体验指南</a></li>
+      <li><a href="#faq">常见问答</a></li>
+      <li><a href="#comments">用户评论</a></li>
+      <li><a href="#news">相关资讯</a></li>
+      <li><a href="#ranks">热门榜单</a></li>
+      <li><a href="#contribute">投稿交流</a></li>
+    </ul>
+  </aside>
+
+  <!-- 中间主内容 -->
+  <main class="main-col">
+
+    <!-- 1 领域概览 -->
+    <section class="section" id="overview" aria-labelledby="overview-title">
+      <div class="section-head">
+        <h2 id="overview-title">美好生活内容方向概览</h2>
+        <p class="sub">家居改造、城市漫步、手作料理、日常美学四个方向的具体条目</p>
+      </div>
+      <div class="overview-text">
+        <p>日常美学在内容平台上已经分出几条比较清晰的支线。家居改造方向以局部翻新为主，阳台、厨房台面、玄关柜是出现频率最高的三个场景，小红书「#阳台改造」话题到2026年10月累计笔记数超过82万条；城市漫步方向从单纯的路线打卡转向点位细节，上海老城南、广州西关、成都玉林是今年被记录最多的片区；手作料理方向则集中在应季食材和一人食，秋季的板栗、柿子、南瓜类食谱在10月下旬到11月初集中放量。</p>
+        <p>值得关注的新变化是「可执行清单」的需求在涨。同一条内容，带尺寸、带价格、带步骤的版本收藏率明显高于纯氛围图。以阳台香草角为例，标注了花盆口径、朝向和浇水频率的笔记，10月平均收藏数是同话题纯图片笔记的3.2倍。手作料理里的「一次备料三日份」系列也是类似逻辑，把备餐时间和保存方式写清楚，才有人真的照着做。</p>
+        <p>另一个方向是城市漫步的点位颗粒度在变细。今年10月，有账号把上海老城南的18个点位按「可坐」「可拍」「可吃」三类重新标注，单条笔记获得1.7万次收藏。这类内容不再只给路线图，而是给每个点位一个具体的停留理由。</p>
+      </div>
+    </section>
+
+    <!-- 2 精选内容 -->
+    <section class="section" id="picks" aria-labelledby="picks-title">
+      <div class="section-head">
+        <h2 id="picks-title">近期精选内容条目</h2>
+        <p class="sub">带类型标签、看点与热度参考，按内容方向分布</p>
+      </div>
+      <div class="card-grid">
+        <article class="card search-item">
+          <img class="card-img" src="https://picsum.photos/seed/balcony-herb/400/300" width="400" height="300" loading="lazy" alt="阳台香草角改造后的陶盆与薄荷罗勒摆放实景">
+          <div class="card-body">
+            <span class="card-type">家居改造</span>
+            <h3><a href="#deep">阳台香草角改造清单</a></h3>
+            <p class="card-desc">1.2米护栏阳台的六盆方案，标注了朝向、口径与浇水频率，附总价约340元的采购明细。</p>
+            <div class="card-tags"><span>阳台</span><span>香草</span><span>小户型</span></div>
+            <div class="card-meta"><span>收藏 1.7万</span><span>10月28日</span></div>
+          </div>
+        </article>
+        <article class="card search-item">
+          <img class="card-img" src="https://picsum.photos/seed/citywalk-south/400/300" width="400" height="300" loading="lazy" alt="上海老城南街巷中的石库门门头和梧桐树影">
+          <div class="card-body">
+            <span class="card-type">城市漫步</span>
+            <h3><a href="#news">上海老城南18点位漫步图</a></h3>
+            <p class="card-desc">按可坐、可拍、可吃三类重标，每个点位给一个停留理由，全程约4.6公里。</p>
+            <div class="card-tags"><span>上海</span><span>老城厢</span><span>步行路线</span></div>
+            <div class="card-meta"><span>收藏 2.3万</span><span>11月6日</span></div>
+          </div>
+        </article>
+        <article class="card search-item">
+          <img class="card-img" src="https://picsum.photos/seed/chestnut-recipe/400/300" width="400" height="300" loading="lazy" alt="秋季板栗焖饭装在土锅里的成品近景">
+          <div class="card-body">
+            <span class="card-type">手作料理</span>
+            <h3><a href="#guide">板栗焖饭的一人食分量</a></h3>
+            <p class="card-desc">生板栗去壳的冷冻预处理法，配米水比例1:1.1，适合一次做两餐的量。</p>
+            <div class="card-tags"><span>板栗</span><span>焖饭</span><span>一人食</span></div>
+            <div class="card-meta"><span>收藏 9600</span><span>11月2日</span></div>
+          </div>
+        </article>
+        <article class="card search-item">
+          <img class="card-img" src="https://picsum.photos/seed/entryway-fix/400/300" width="400" height="300" loading="lazy" alt="玄关柜改造后加装的洞洞板与挂钩细节">
+          <div class="card-body">
+            <span class="card-type">家居改造</span>
+            <h3><a href="#comments">玄关柜洞洞板免打孔方案</a></h3>
+            <p class="card-desc">租房可用的免钉安装法，承重实测挂三件外套加一个帆布包没有脱落。</p>
+            <div class="card-tags"><span>玄关</span><span>洞洞板</span><span>租房</span></div>
+            <div class="card-meta"><span>收藏 1.2万</span><span>10月30日</span></div>
+          </div>
+        </article>
+        <article class="card search-item">
+          <img class="card-img" src="https://picsum.photos/seed/yulin-walk/400/300" width="400" height="300" loading="lazy" alt="成都玉林片区傍晚的街边小店与自行车">
+          <div class="card-body">
+            <span class="card-type">城市漫步</span>
+            <h3><a href="#news">成都玉林傍晚两小时路线</a></h3>
+            <p class="card-desc">从玉林四巷到倪家桥，串六个可歇脚小院，避开周末晚高峰人流。</p>
+            <div class="card-tags"><span>成都</span><span>玉林</span><span>傍晚路线</span></div>
+            <div class="card-meta"><span>收藏 8800</span><span>11月4日</span></div>
+          </div>
+        </article>
+        <article class="card search-item">
+          <img class="card-img" src="https://picsum.photos/seed/persimmon-jam/400/300" width="400" height="300" loading="lazy" alt="自制柿子果酱装在小玻璃罐里，旁边放着司康">
+          <div class="card-body">
+            <span class="card-type">手作料理</span>
+            <h3><a href="#guide">柿子果酱低糖版比例</a></h3>
+            <p class="card-desc">果肉与糖按5:1，加半个柠檬，熬18分钟到挂勺状态，冷藏可放两周。</p>
+            <div class="card-tags"><span>柿子</span><span>果酱</span><span>低糖</span></div>
+            <div class="card-meta"><span>收藏 7400</span><span>11月1日</span></div>
+          </div>
+        </article>
+        <article class="card search-item">
+          <img class="card-img" src="https://picsum.photos/seed/kitchen-counter/400/300" width="400" height="300" loading="lazy" alt="厨房台面重新收纳后的调料架与砧板竖放状态">
+          <div class="card-body">
+            <span class="card-type">日常美学</span>
+            <h3><a href="#deep">厨房台面竖向收纳三件套</a></h3>
+            <p class="card-desc">砧板竖放架、调料抽拉盒、磁吸刀架的组合，台面空出约40厘米操作区。</p>
+            <div class="card-tags"><span>厨房</span><span>收纳</span><span>台面</span></div>
+            <div class="card-meta"><span>收藏 1.5万</span><span>10月29日</span></div>
+          </div>
+        </article>
+        <article class="card search-item">
+          <img class="card-img" src="https://picsum.photos/seed/xiyuan-cafe/400/300" width="400" height="300" loading="lazy" alt="广州西关骑楼下的小咖啡馆门口摆着两张木凳">
+          <div class="card-body">
+            <span class="card-type">城市漫步</span>
+            <h3><a href="#ranks">广州西关骑楼咖啡点位</a></h3>
+            <p class="card-desc">沿恩宁路标出七家骑楼底商咖啡馆，标注了座位朝向和下午光照时间。</p>
+            <div class="card-tags"><span>广州</span><span>西关</span><span>咖啡馆</span></div>
+            <div class="card-meta"><span>收藏 6900</span><span>10月27日</span></div>
+          </div>
+        </article>
+      </div>
+      <div class="no-result" id="noResult">没有找到匹配的条目，试试「阳台」「板栗」「老城」这类具体词。</div>
+    </section>
+
+    <!-- 3 最新更新 -->
+    <section class="section" id="updates" aria-labelledby="updates-title">
+      <div class="section-head">
+        <h2 id="updates-title">最新更新与动态</h2>
+        <p class="sub">近两周内新增或修订的具体条目</p>
+      </div>
+      <div class="update-list">
+        <div class="update-item"><span class="u-title">阳台香草角清单</span><span class="u-desc">补充了北向阳台的耐阴品种替换建议，罗勒改为薄荷与紫苏。</span><span class="u-time">11月7日</span></div>
+        <div class="update-item"><span class="u-title">老城南18点位</span><span class="u-desc">新增两个可坐点位，删除一个已围挡施工的巷口。</span><span class="u-time">11月6日</span></div>
+        <div class="update-item"><span class="u-title">板栗焖饭分量表</span><span class="u-desc">修正了糙米版本的加水量，从1:1.1调整为1:1.35。</span><span class="u-time">11月5日</span></div>
+        <div class="update-item"><span class="u-title">玄关洞洞板方案</span><span class="u-desc">加入免钉胶在乳胶漆墙面的72小时承重观察记录。</span><span class="u-time">11月4日</span></div>
+        <div class="update-item"><span class="u-title">玉林傍晚路线</span><span class="u-desc">标注了两家周一休息的小院，路线页加了替补点位。</span><span class="u-time">11月4日</span></div>
+        <div class="update-item"><span class="u-title">柿子果酱比例</span><span class="u-desc">新增微波炉快手版，总耗时压到9分钟。</span><span class="u-time">11月3日</span></div>
+        <div class="update-item"><span class="u-title">厨房台面收纳</span><span class="u-desc">补充了抽拉盒滑轨长度与常见40厘米台面的适配说明。</span><span class="u-time">11月2日</span></div>
+        <div class="update-item"><span class="u-title">西关咖啡点位</span><span class="u-desc">按下午光照重新排序，靠窗位标注了西晒时段。</span><span class="u-time">10月31日</span></div>
+        <div class="update-item"><span class="u-title">秋季备餐三日份</span><span class="u-desc">新增根茎类与叶菜分开保存的时间表。</span><span class="u-time">10月30日</span></div>
+        <div class="update-item"><span class="u-title">租房改造预算表</span><span class="u-desc">按500元、1000元、2000元三档重排了采购清单。</span><span class="u-time">10月28日</span></div>
+      </div>
+    </section>
+
+    <!-- 4 分类入口 -->
+    <section class="section" id="categories" aria-labelledby="categories-title">
+      <div class="section-head">
+        <h2 id="categories-title">按内容方向找条目</h2>
+        <p class="sub">八个具体类别，对应日常可搜索的场景词</p>
+      </div>
+      <div class="cat-grid">
+        <a class="cat-card" href="#picks"><strong>阳台改造</strong><span>香草、晾晒、护栏</span></a>
+        <a class="cat-card" href="#picks"><strong>厨房收纳</strong><span>台面、抽拉、竖向</span></a>
+        <a class="cat-card" href="#picks"><strong>玄关整理</strong><span>洞洞板、免钉、租房</span></a>
+        <a class="cat-card" href="#news"><strong>城市漫步</strong><span>老城、骑楼、点位</span></a>
+        <a class="cat-card" href="#guide"><strong>一人食料理</strong><span>焖饭、果酱、备餐</span></a>
+        <a class="cat-card" href="#guide"><strong>应季食材</strong><span>板栗、柿子、南瓜</span></a>
+        <a class="cat-card" href="#deep"><strong>小户型收纳</strong><span>40厘米、竖放、折叠</span></a>
+        <a class="cat-card" href="#comments"><strong>租房改造</strong><span>免打孔、可复原、预算</span></a>
+      </div>
+    </section>
+
+    <!-- 5 深度解析 -->
+    <section class="section" id="deep" aria-labelledby="deep-title">
+      <div class="section-head">
+        <h2 id="deep-title">局部改造内容的判断与取舍</h2>
+        <p class="sub">从阳台、玄关、厨房三个具体场景拆解可执行性</p>
+      </div>
+      <div class="deep-read">
+        <h3>阳台改造：先定朝向，再谈风格</h3>
+        <p>阳台改造内容最容易出现的问题是「只放美图不给参数」。以10月28日更新的阳台香草角清单为例，它的可执行性来自三个具体数字：护栏高度1.2米、单盆口径15厘米、夏季每日浇水一次。同样是六盆方案，北向阳台如果照搬南向的罗勒和迷迭香，存活率会明显下降。这份清单在11月7日的修订里补了一条：北向改用薄荷、紫苏和香葱，浇水频率降到两天一次。修订前后，评论区关于「养不活」的反馈从27条降到4条。</p>
+        <p>判断一份阳台改造内容值不值得存，可以按这个顺序核对：</p>
+        <ul>
+          <li>有没有写朝向和每日直射时长；</li>
+          <li>有没有给盆口径和植株间距；</li>
+          <li>有没有区分耐阴与喜阳品种的替换方案；</li>
+          <li>预算是否拆到单项，而不是只给总数。</li>
+        </ul>
+        <div class="quote">一个可对照的细节：标注了口径和间距的笔记，10月平均评论互动率是2.8%，纯氛围图笔记是0.9%。</div>
+
+        <h3>玄关洞洞板：免打孔的承重边界在哪</h3>
+        <p>租房场景下，免打孔是硬需求，但免钉胶的承重不是无限的。10月30日那份玄关柜洞洞板方案给了一个可核对的时间线：安装后24小时挂一件薄外套，48小时挂两件，72小时后加到三件外套加一个帆布包，未见脱落。它的边界写在正文里——乳胶漆墙面、单点承重不超过2公斤、总承重控制在6公斤以内。超过这个量级，需要改用顶天立地撑杆或者直接打孔。</p>
+        <p>这类内容的可信度可以从三个来源缺失与否来判断：是否写墙面材质、是否写观察时长、是否写失效后的补救方式。三项全有的方案，在评论区被追问「掉了怎么办」的比例明显更低。</p>
+
+        <h3>厨房台面竖向收纳：40厘米是怎么空出来的</h3>
+        <p>厨房台面的可用宽度在多数小户型里是40到60厘米。竖向收纳三件套的逻辑不是买更多收纳盒，而是把原本平放的砧板、锅盖、刀具立起来。砧板竖放架占宽12厘米，调料抽拉盒占宽15厘米，磁吸刀架上墙不占台面。三件加起来，台面纵向释放约40厘米连续操作区。</p>
+        <p>需要提醒的是抽拉盒的滑轨长度。11月2日补充的适配说明里写得很清楚：40厘米台面配25厘米滑轨刚好，配30厘米滑轨会在最外侧留出5厘米死角，调料瓶容易卡住。这个细节在原来的版本里被漏掉了，补充后有用户按新尺寸重装，反馈卡顿问题消失。</p>
+        <p>把三个场景放在一起看，局部改造内容真正稀缺的不是创意，而是参数和边界。朝向、口径、承重、滑轨长度、浇水频率，这些东西不写，内容就停留在参考图层面。</p>
+      </div>
+    </section>
+
+    <!-- 6 体验指南 -->
+    <section class="section" id="guide" aria-labelledby="guide-title">
+      <div class="section-head">
+        <h2 id="guide-title">内容消费顺序与判断依据</h2>
+        <p class="sub">从挑选条目到真正动手的四步</p>
+      </div>
+      <div class="guide-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>先按场景筛，不按风格筛</h3>
+            <p>阳台、玄关、厨房、城市片区、应季食材，这些场景词能直接缩小范围。风格词（日式、侘寂、奶油风）在同场景内的差异其实没有参数差异大，先看场景再看风格，筛掉的无效内容更多。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>核对三项硬信息</h3>
+            <p>改造类看尺寸、材质、承重或价格；料理类看分量、时间、保存方式；漫步类看点位距离、可停留时长、营业或开放时间。三项里缺两项的条目，先收藏不下单。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>翻评论区找失效反馈</h3>
+            <p>「用了三个月掉了」「按这个比例太甜」这类评论比正文更有参考价值。重点看有没有带时间的追评，以及作者有没有在评论区修订。10月30日洞洞板方案就是靠评论区补出了乳胶漆墙面的限制条件。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>同类条目横向比价与比时</h3>
+            <p>同样是一人食焖饭，板栗焖饭的备料时间是18分钟，南瓜焖饭是12分钟，差距在去壳和切块。时间紧的时候选预处理成本低的，口感差异没有大到值得多花6分钟。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="section-head">
+        <h2 id="faq-title">具体条目常见提问</h2>
+        <p class="sub">围绕阳台、料理、漫步、收纳的实操问题</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>北向阳台真的能种香草吗？</summary>
+          <p>能，但要换品种。北向每天直射光通常不足2小时，罗勒、迷迭香这类喜阳品种长势弱。薄荷、紫苏、香葱在散射光下也能维持，浇水从每天一次改成两天一次。10月下旬有北向阳台用户按这个替换方案执行，六盆里存活五盆，死掉的是没换掉的罗勒。</p>
+        </details>
+        <details>
+          <summary>板栗焖饭的生板栗怎么快速去壳？</summary>
+          <p>先冷冻再处理。生板栗装袋冷冻4小时以上，取出后用刀在弧面划一道口，烤箱200度烤8分钟，壳和内膜会一起裂开。这个预处理法比热水烫省时间，也避免烫手。冷冻后的板栗可以直接进焖饭，不需要回温。</p>
+        </details>
+        <details>
+          <summary>免钉胶挂洞洞板，多久能挂东西？</summary>
+          <p>至少等24小时。10月30日那份方案的观察记录是24小时挂薄外套、48小时挂两件、72小时挂三件加帆布包。乳胶漆墙面比瓷砖墙面弱，单点承重控制在2公斤以内，总重不超过6公斤。超了要换撑杆或打孔。</p>
+        </details>
+        <details>
+          <summary>城市漫步路线里「可坐」点位怎么判断？</summary>
+          <p>看三个条件：有座椅或台阶、不挡商铺门面、没有明显驱赶提示。上海老城南18点位里标为可坐的地方，大多是弄堂口的石阶和小区外围的长椅。标注时会写清可坐时段，避开居民午休的12点到14点。</p>
+        </details>
+        <details>
+          <summary>柿子果酱低糖版能放多久？</summary>
+          <p>冷藏两周内吃完。果肉与糖5:1，加半个柠檬汁，熬到挂勺状态装瓶。糖量降低后防腐能力下降，装瓶前瓶子要开水烫过晾干，取用时用干净勺子。11月1日版本补充了微波炉快手版，但保存时间不变。</p>
+        </details>
+        <details>
+          <summary>小户型厨房台面只有40厘米怎么收纳？</summary>
+          <p>优先竖向，不叠横向。砧板竖放架12厘米、调料抽拉盒15厘米、刀架上墙，三件合计台面占宽27厘米，留出13厘米操作区。滑轨选25厘米，别选30厘米，否则最外侧5厘米会卡住调料瓶。</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 8 用户评论 -->
+    <section class="section" id="comments" aria-labelledby="comments-title">
+      <div class="section-head">
+        <h2 id="comments-title">用户评论与反馈</h2>
+        <p class="sub">围绕具体条目的真实语气，含中性评价与吐槽</p>
+      </div>
+      <div class="comment-list">
+        <div class="comment"><span class="c-user">阿栗不加糖</span><p class="c-text">板栗冷冻去壳真的省事，就是烤箱8分钟那个时间我多烤了2分钟才裂开，可能我家烤箱偏温。</p><span class="c-meta">11月5日</span></div>
+        <div class="comment"><span class="c-user">南向小阳台</span><p class="c-text">香草清单里薄荷长得太疯了，一个月爆盆，紫苏反而被挤得没地方。六盆的间距还是得再放宽点。</p><span class="c-meta">11月6日</span></div>
+        <div class="comment"><span class="c-user">老城走三遍</span><p class="c-text">18点位那条路线我走了，可坐的地方确实标得准。就是有一个巷口当天在施工，建议出发前再看一眼更新。</p><span class="c-meta">11月7日</span></div>
+        <div class="comment"><span class="c-user">洞洞板受害者</span><p class="c-text">乳胶漆墙面挂了四天掉下来，不是胶的问题，是那面墙本来就有空鼓。作者后来在评论区补了墙面检查方法，早看到就好了。</p><span class="c-meta">11月4日</span></div>
+        <div class="comment"><span class="c-user">柿子红了</span><p class="c-text">5:1的糖量对我来说还是偏甜，下次想试6:1，但又怕放不住，纠结。</p><span class="c-meta">11月2日</span></div>
+        <div class="comment"><span class="c-user">台面40厘米</span><p class="c-text">抽拉盒滑轨那段太真实了，之前买了30厘米的，最外面那瓶酱油每次都要伸手抠。</p><span class="c-meta">11月3日</span></div>
+        <div class="comment"><span class="c-user">玉林散步者</span><p class="c-text">傍晚路线里两家小院周一休息，标注得很及时，我周一去的，差点白跑。</p><span class="c-meta">11月4日</span></div>
+        <div class="comment"><span class="c-user">西关骑楼</span><p class="c-text">咖啡馆点位按光照排序这个思路不错，下午四点靠窗位确实晒，作者写了西晒时间，有用。</p><span class="c-meta">10月31日</span></div>
+        <div class="comment"><span class="c-user">不热心市民</span><p class="c-text">这类内容看多了会发现，参数写清楚的没几个，大部分还是图好看。最近刷到好几条一模一样的阳台图，连盆的位置都没变。</p><span class="c-meta">11月1日</span></div>
+        <div class="comment"><span class="c-user">备餐三天</span><p class="c-text">根茎类和叶菜分开保存的时间表很实用，我之前叶菜和胡萝卜混着放，第三天叶子全烂了。</p><span class="c-meta">10月30日</span></div>
+        <div class="comment"><span class="c-user">南瓜不甜</span><p class="c-text">南瓜焖饭12分钟备料这个数我觉得偏乐观，我切块就花了8分钟，可能刀不够快。</p><span class="c-meta">11月2日</span></div>
+        <div class="comment"><span class="c-user">租房两年半</span><p class="c-text">免打孔方案对租房的友好度确实高，但退租时撕胶留下的印子也要算进成本，这点希望以后能提一句。</p><span class="c-meta">11月6日</span></div>
+        <div class="comment"><span class="c-user">薄荷杀手</span><p class="c-text">我养死过三盆薄荷，看完才知道是浇水太勤。两天一次对北向来说还是多，现在改成看土干了再浇。</p><span class="c-meta">11月5日</span></div>
+        <div class="comment"><span class="c-user">路过的猫</span><p class="c-text">板栗焖饭配点腊肠更好吃，纯板栗有点单调，个人口味。</p><span class="c-meta">11月3日</span></div>
+        <div class="comment"><span class="c-user">滑轨研究</span><p class="c-text">25厘米滑轨配40厘米台面这个组合我试了，确实刚好，抽屉拉出来调料瓶看得清清楚楚。</p><span class="c-meta">11月2日</span></div>
+        <div class="comment"><span class="c-user">周五晚八点</span><p class="c-text">城市漫步的「可拍」分类有点主观，同一条巷子有人觉得出片有人觉得普通，不如直接标光线方向。</p><span class="c-meta">11月1日</span></div>
+      </div>
+    </section>
+
+    <!-- 9 相关资讯 -->
+    <section class="section" id="news" aria-labelledby="news-title">
+      <div class="section-head">
+        <h2 id="news-title">近期相关资讯</h2>
+        <p class="sub">带日期与具体动作的领域动态</p>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <span class="n-date">2026年11月6日</span>
+          <h3><a href="#updates">上海老城南漫步图更新：新增2个可坐点，删除1个施工巷口</a></h3>
+          <p>更新后的版本把全程距离从4.4公里调整到4.6公里，新增点位位于巡道街与乔家路口，附了可坐时段。</p>
+        </div>
+        <div class="news-item">
+          <span class="n-date">2026年11月4日</span>
+          <h3><a href="#updates">成都玉林傍晚路线标注两家周一闭店小院</a></h3>
+          <p>路线页加入替补点位，从玉林四巷调整到倪家桥方向，绕行增加约600米。</p>
+        </div>
+        <div class="news-item">
+          <span class="n-date">2026年11月2日</span>
+          <h3><a href="#updates">厨房台面收纳补充滑轨适配：40厘米台面配25厘米滑轨</a></h3>
+          <p>此前30厘米滑轨版本被反馈外侧留5厘米死角，补充说明后作者建议已购用户加装限位块。</p>
+        </div>
+        <div class="news-item">
+          <span class="n-date">2026年10月30日</span>
+          <h3><a href="#updates">玄关洞洞板免钉方案公布72小时承重观察记录</a></h3>
+          <p>记录显示乳胶漆墙面单点承重2公斤以内稳定，总重6公斤为上限，超限建议改用撑杆。</p>
+        </div>
+        <div class="news-item">
+          <span class="n-date">2026年10月28日</span>
+          <h3><a href="#picks">阳台香草角清单按500元、1000元、2000元三档重排采购明细</a></h3>
+          <p>三档方案的花盆材质与口径不同，500元档用塑料盆，1000元档换陶盆，总价340元的基础版保留。</p>
+        </div>
+        <div class="news-item">
+          <span class="n-date">2026年10月27日</span>
+          <h3><a href="#ranks">广州西关骑楼咖啡点位按下午光照重新排序</a></h3>
+          <p>七家骑楼底商咖啡馆中，三家标注了西晒时段，建议避开14点到16点靠窗位。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 相关推荐 -->
+    <section class="section" id="related" aria-labelledby="related-title">
+      <div class="section-head">
+        <h2 id="related-title">相关推荐方向</h2>
+        <p class="sub">按具体内容方向与场景词索引</p>
+      </div>
+      <div class="tag-index">
+        <a href="#picks">阳台香草角清单</a>
+        <a href="#picks">玄关洞洞板免打孔</a>
+        <a href="#picks">厨房台面竖向收纳</a>
+        <a href="#picks">上海老城南18点位</a>
+        <a href="#picks">成都玉林傍晚路线</a>
+        <a href="#guide">板栗焖饭一人食</a>
+        <a href="#guide">柿子果酱低糖版</a>
+        <a href="#comments">租房改造免打孔</a>
+      </div>
+    </section>
+
+    <!-- 11 补充板块：热门榜单 -->
+    <section class="section" id="ranks" aria-labelledby="ranks-title">
+      <div class="section-head">
+        <h2 id="ranks-title">近30天收藏榜</h2>
+        <p class="sub">按10月9日至11月8日收藏量排序</p>
+      </div>
+      <div class="rank-list">
+        <div class="rank-item"><span class="rank-num">1</span><span class="r-name">上海老城南18点位漫步图</span><span class="r-info">收藏 2.3万 · 11月6日更新</span></div>
+        <div class="rank-item"><span class="rank-num">2</span><span class="r-name">阳台香草角改造清单</span><span class="r-info">收藏 1.7万 · 11月7日更新</span></div>
+        <div class="rank-item"><span class="rank-num">3</span><span class="r-name">厨房台面竖向收纳三件套</span><span class="r-info">收藏 1.5万 · 11月2日更新</span></div>
+        <div class="rank-item"><span class="rank-num">4</span><span class="r-name">玄关柜洞洞板免打孔方案</span><span class="r-info">收藏 1.2万 · 11月4日更新</span></div>
+        <div class="rank-item"><span class="rank-num">5</span><span class="r-name">板栗焖饭一人食分量</span><span class="r-info">收藏 9600 · 11月5日修正</span></div>
+        <div class="rank-item"><span class="rank-num">6</span><span class="r-name">成都玉林傍晚两小时路线</span><span class="r-info">收藏 8800 · 11月4日更新</span></div>
+        <div class="rank-item"><span class="rank-num">7</span><span class="r-name">柿子果酱低糖版比例</span><span class="r-info">收藏 7400 · 11月3日更新</span></div>
+        <div class="rank-item"><span class="rank-num">8</span><span class="r-name">广州西关骑楼咖啡点位</span><span class="r-info">收藏 6900 · 10月31日更新</span></div>
+      </div>
+    </section>
+
+    <!-- 12 互动：投稿交流 -->
+    <section class="section" id="contribute" aria-labelledby="contribute-title">
+      <div class="section-head">
+        <h2 id="contribute-title">投稿与交流</h2>
+        <p class="sub">把自己动手做的局部改造、料理或路线整理成条目</p>
+      </div>
+      <div class="overview-text">
+        <p>投稿方向分三类。改造类需要附尺寸、材质和预算拆项，最好有安装或使用后的观察记录，比如免钉胶挂满72小时的承重结果。料理类需要写清分量、时间和保存方式，一人食和多人份分开标注。漫步类需要给点位停留理由和可坐时段，施工或闭店信息请在更新时注明。</p>
+        <p>交流区每两周整理一次「修订记录」，把评论区里被验证有效的补充合并进条目正文。10月30日洞洞板方案的乳胶漆墙面限制、11月2日抽拉盒的滑轨适配，都来自用户反馈。投稿没有固定格式，但缺硬信息的条目会先放进待补充区，补齐后再上精选。</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 右辅助栏 -->
+  <aside class="side-col" aria-label="辅助信息">
+    <div class="side-card">
+      <h2>本周更新条目</h2>
+      <ul class="side-list">
+        <li><a href="#updates">阳台香草角·北向替换方案<span class="s-meta">11月7日 · 家居改造</span></a></li>
+        <li><a href="#updates">老城南18点位增删<span class="s-meta">11月6日 · 城市漫步</span></a></li>
+        <li><a href="#updates">板栗焖饭糙米加水比<span class="s-meta">11月5日 · 手作料理</span></a></li>
+        <li><a href="#updates">洞洞板72小时承重记录<span class="s-meta">11月4日 · 租房改造</span></a></li>
+        <li><a href="#updates">抽拉盒滑轨适配说明<span class="s-meta">11月2日 · 厨房收纳</span></a></li>
+      </ul>
+    </div>
+    <div class="side-card">
+      <h2>热门标签</h2>
+      <div class="tag-index" style="gap:7px">
+        <a href="#picks" style="font-size:12.5px;padding:4px 11px">阳台改造</a>
+        <a href="#picks" style="font-size:12.5px;padding:4px 11px">洞洞板</a>
+        <a href="#picks" style="font-size:12.5px;padding:4px 11px">台面收纳</a>
+        <a href="#picks" style="font-size:12.5px;padding:4px 11px">老城南</a>
+        <a href="#picks" style="font-size:12.5px;padding:4px 11px">一人食</a>
+        <a href="#picks" style="font-size:12.5px;padding:4px 11px">板栗</a>
+        <a href="#picks" style="font-size:12.5px;padding:4px 11px">柿子</a>
+      </div>
+    </div>
+    <div class="side-cta">
+      <h2>投稿交流</h2>
+      <p>有尺寸、有步骤、有踩坑记录的条目，更容易被收录进精选。</p>
+      <a class="btn-primary" href="#contribute">查看投稿说明</a>
+    </div>
+  </aside>
+
+</div>
+
+<!-- 页尾 -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-text">看料今日美好生活</span>
+      <p>覆盖2026年9月至11月的家居局部改造、城市漫步路线、一人食料理与日常收纳条目，以可核对参数和用户修订记录为主要内容形态，每两周合并一次评论区补充。</p>
+    </div>
+    <div class="footer-col">
+      <h3>内容方向</h3>
+      <ul>
+        <li><a href="#picks">阳台改造</a></li>
+        <li><a href="#picks">厨房收纳</a></li>
+        <li><a href="#picks">玄关整理</a></li>
+        <li><a href="#picks">城市漫步</a></li>
+        <li><a href="#picks">一人食料理</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>栏目</h3>
+      <ul>
+        <li><a href="#deep">深度解析</a></li>
+        <li><a href="#guide">体验指南</a></li>
+        <li><a href="#faq">常见问答</a></li>
+        <li><a href="#ranks">热门榜单</a></li>
+        <li><a href="#news">相关资讯</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>参与</h3>
+      <ul>
+        <li><a href="#contribute">投稿说明</a></li>
+        <li><a href="#comments">用户评论</a></li>
+        <li><a href="#updates">更新记录</a></li>
+        <li><a href="#overview">领域概览</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>示例内容页面 · 条目数据为领域特征示例，更新日期截至2026年11月8日</span>
+    <span>品牌与栏目名称归页面所有者所有</span>
+  </div>
+</footer>
+
+<button id="backTop" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  var backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > window.innerHeight){
+      backTop.classList.add('show');
+    } else {
+      backTop.classList.remove('show');
+    }
+  }, {passive:true});
+  backTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  // 搜索筛选
+  var searchInput = document.getElementById('siteSearch');
+  var searchBtn = document.getElementById('searchBtn');
+  var noResult = document.getElementById('noResult');
+  var items = document.querySelectorAll('.search-item');
+
+  function doSearch(){
+    var q = (searchInput.value || '').trim().toLowerCase();
+    if(!q){
+      items.forEach(function(el){el.style.display='';});
+      noResult.style.display='none';
+      return;
+    }
+    var visible = 0;
+    items.forEach(function(el){
+      var text = el.textContent.toLowerCase();
+      if(text.indexOf(q) !== -1){
+        el.style.display='';
+        visible++;
+      } else {
+        el.style.display='none';
+      }
+    });
+    noResult.style.display = visible === 0 ? 'block' : 'none';
+  }
+  searchBtn.addEventListener('click', doSearch);
+  searchInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); doSearch(); }
+  });
+  searchInput.addEventListener('input', function(){
+    if(searchInput.value === ''){ doSearch(); }
+  });
+
+  // Esc 清空搜索
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      if(document.activeElement === searchInput){
+        searchInput.value = '';
+        doSearch();
+      }
+    }
+  });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"看料今日美好生活",
+  "description":"汇聚家居改造、城市漫步、手作料理与日常美学内容，提供精选条目、深度解析和真实评论。",
+  "inLanguage":"zh-CN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"北向阳台真的能种香草吗？","acceptedAnswer":{"@type":"Answer","text":"能，但要换品种。北向每天直射光通常不足2小时，罗勒、迷迭香这类喜阳品种长势弱。薄荷、紫苏、香葱在散射光下也能维持，浇水从每天一次改成两天一次。"}},
+    {"@type":"Question","name":"板栗焖饭的生板栗怎么快速去壳？","acceptedAnswer":{"@type":"Answer","text":"先冷冻再处理。生板栗装袋冷冻4小时以上，取出后用刀在弧面划一道口，烤箱200度烤8分钟，壳和内膜会一起裂开。"}},
+    {"@type":"Question","name":"免钉胶挂洞洞板，多久能挂东西？","acceptedAnswer":{"@type":"Answer","text":"至少等24小时。乳胶漆墙面比瓷砖墙面弱，单点承重控制在2公斤以内，总重不超过6公斤。超了要换撑杆或打孔。"}},
+    {"@type":"Question","name":"城市漫步路线里「可坐」点位怎么判断？","acceptedAnswer":{"@type":"Answer","text":"看三个条件：有座椅或台阶、不挡商铺门面、没有明显驱赶提示。标注时会写清可坐时段，避开居民午休的12点到14点。"}},
+    {"@type":"Question","name":"柿子果酱低糖版能放多久？","acceptedAnswer":{"@type":"Answer","text":"冷藏两周内吃完。果肉与糖5:1，加半个柠檬汁，熬到挂勺状态装瓶。糖量降低后防腐能力下降，装瓶前瓶子要开水烫过晾干。"}},
+    {"@type":"Question","name":"小户型厨房台面只有40厘米怎么收纳？","acceptedAnswer":{"@type":"Answer","text":"优先竖向，不叠横向。砧板竖放架12厘米、调料抽拉盒15厘米、刀架上墙，三件合计台面占宽27厘米，留出13厘米操作区。滑轨选25厘米。"}}
+  ]
+}
+</script>
+</body>
+  </html>
